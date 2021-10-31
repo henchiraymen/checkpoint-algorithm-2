@@ -1,0 +1,37 @@
+ALGORITHM sum_diff_2
+VAR
+    set1,set2 : ARRAY_OF INTEGER[50];
+    keys : ARRAY_OF INTEGER[100];
+    tab := HASH_TABLE<INTEGER,INTEGER>;
+    i,count : INTEGER;
+    s : INTEGER := 0;
+BEGIN
+    // add elements of set1 into the hash-tables
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        IF (tab.lookup(set1[i]) = TRUE) THEN
+            count := tab.get(set1[i]);
+            tab.insert(set1[i],count+1);
+        ELSE
+            dict.insert(set1[i],1);
+        END_IF
+    END_FOR
+
+    // add elements of set2 into the hash-tables
+    FOR i FROM 0 TO set2.length-1 STEP 1  DO
+        IF (tab.lookup(set2[i]) = TRUE) THEN
+            count := tab.get(set2[i]);
+            tab.insert(set2[i],count+1);
+        ELSE
+            dict.insert(set2[i],1);
+        END_IF
+    END_FOR
+
+    // get the distinct elements
+    keys := tab.getKeys();
+    FOR i FROM 0 TO keys.length-1 STEP 1  DO
+        IF (tab.get(keys[i])= 1) THEN
+            s := s + keys[i];
+        END_IF
+    END_FOR
+
+END
